@@ -1,35 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     // Declare variables to store numbers and the operator
     double num1, num2, result;
     char operator;
-    int valid_input;
+    char input[100];
 
     // Display welcome message
-    printf("=== Simple Calculator ===\n");
-    printf("Enter an arithmetic operation:\n\n");
+    printf("=== Simple Calculator ===\n\n");
 
     // Get first number from user
     printf("Enter first number: ");
-    valid_input = scanf("%1f", &num1);
-
-    //Clear the input buffer
-    while (getchar() != '\n');
+    fgets(input, sizeof(input), stdin);
+    num1 = atof(input); // Convert input string to double
 
     // Get the operator from user
     printf("Enter operator (+, -, *, /): ");
-    operator = getchar();
-
-    // Clear the input buffer again
-    while (getchar() != '\n');
+    fgets(input, sizeof(input), stdin);
+    operator = input[0]; //Get first character
 
     // Get second number from user
     printf("Enter second number: ");
-    valid_input = scanf("%1f", &num2);
+    fgets(input, sizeof(input), stdin);
+    num2 = atof(input); // Convert string to double
 
-    // Clear the input buffer
-    while (getchar() != '\n');
     printf("\n");
 
     // Use conditional logic to perform the correct operation
@@ -57,7 +52,7 @@ int main() {
     }
     else {
         // Handle invalid operator
-        printf("Error: Invalid operator. Please use +, -, *, or / \n", operator);
+        printf("Error: Invalid operator '%c'. Please use +, -, *, or / \n", operator);
     }
 
     return 0;
